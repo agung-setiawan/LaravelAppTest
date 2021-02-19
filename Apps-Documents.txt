@@ -1,0 +1,94 @@
+For Running system please following :
+	1. Running System, with command prompt or terminal : php artisan serve.
+	2. For open web, direct to localhost:8000 in browser.
+	3. For instant login please use accout 
+		email 		: sa@email.com
+		password	: Admin_123.
+		
+For API use, there 2 methods for access :
+	1. Register
+	2. Login.
+	
+For API action there 4 methods :
+	1. (GET) 	/api/v1/user 		=> get all user list.
+	2. (GET) 	/api/v1/find/{id}	=> get specified user with the id.
+	3. (POST) 	/api/v1/update/{id}	=> update data for specified user with the id.
+	4. (GET)	/api/v1/delete/{id}	=> delete for specified user with the id.
+	
+============================================================================
+
+Assume => API tools using POSTMAN.
+
+API Register following :
+	1. Set Header Tab :
+		Accept : application/json.
+	2. Set Body Tab and choose form-data, please give data :
+		2.1. Key : name Value : (anything)
+		2.2. Key : email Value : (anything)
+		2.3. Key : password Value : (anything)
+		2.4. Key : status Value : (active / inactive)
+		2.5. Key : position Value : (anything)
+	
+Return result is generated token
+
+============================================================================
+
+API Login following :
+	1. Set Authorization Tab :
+		1.1 select Type : Bearer Token
+		1.2 Fill Token with Generated token when register
+	
+	2. Set Header Tab :
+		Accept : application/json.
+	
+	2. Set Body and choose form-data, please give data :
+		1. Key : name Value : (with registered email)
+		3. Key : password Value : (with registered password)
+	
+Return result is generated token
+
+============================================================================
+
+API action following :
+	1. (GET) Get all user list :
+		1.1 Pointing to URL : localhost:8000/api/v1/user
+		1.2 Set Header Tab => Accept : application/json.
+		1.2 Set Authorization Tab :
+			1.2.1 Select Type : Bearer Token
+			1.2.2 Fill Token with Generated token when login
+		1.3. Set Protocol with GET
+		1.4 Hit Send
+	Return : List of registered user
+		
+		
+	2. (GET) specified user :
+		2.1 Pointing to URL : localhost:8000/api/v1/user/{id} (replace {id} with user ID)
+		2.2 Set Header Tab => Accept : application/json.
+		2.2 Set Authorization Tab :
+			2.2.1 Select Type : Bearer Token
+			2.2.2 Fill Token with Generated token when login
+		2.3 Set Protocol with GET
+		2.4 Hit Send
+	Return : All data of specified registered user
+	
+	3. (POST) specified user :
+		3.1 Pointing to URL : localhost:8000/api/v1/user/{id} (replace {id} with user ID)
+		3.2 Set Header Tab => Accept : application/json.
+		3.2 Set Authorization Tab :
+			3.2.1 Select Type : Bearer Token
+			3.2.2 Fill Token with Generated token when login
+		3.3 Set Body Tab and choos form-data:
+			3.3.1 Fill with fields that whant to change like (name, email, password, status, position);
+		3.4 Set Protocol with POST
+		3.5 Hit Send
+	Return : Message update success if the process it success.
+
+	4. (GET) specified user :
+		4.1 Pointing to URL : localhost:8000/api/v1/delete/{id} (replace {id} with user ID)
+		4.2 Set Header Tab => Accept : application/json.
+		4.3 Set Authorization Tab :
+			4.3.1 Select Type : Bearer Token
+			4.3.2 Fill Token with Generated token when login
+		4.4 Set Protocol with GET
+		4.5 Hit Send
+	Return : Message delete success if the process it success.
